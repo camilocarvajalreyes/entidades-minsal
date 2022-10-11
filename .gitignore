@@ -1,4 +1,9 @@
 clases/
 datos/DATA_HLF_MDS.csv
+datos/DATA_HLF_MDS_2.csv
+datos/diccionario_data_hlf.xlsx
+datos/PRINCIPIOS_ACTIVOS_MDS.xlsx
 reuniones/
 .ipynb_checkpoints/
+Notebooks_Exploracion/modelos/
+otros/
