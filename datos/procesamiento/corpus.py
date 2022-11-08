@@ -1,12 +1,13 @@
 from typing import List
 from datasets import Dataset
+import itertools
 
 
 class TaggedText:
-    """Clase correspondiente a una columna de corpus
+    """Clase correspondiente a una fila de corpus
     Para usar al interior de la clase corpus"""
-    def __init__(self,tokens:List[str],tags:List[int],id_number:int=None):
-        """Inicializador de columna
+    def __init__(self,tokens:List[str],tags:List[str],id_number:int=None):
+        """Inicializador de fila
         
         Argumentos
         
@@ -35,6 +36,9 @@ class Corpus:
     def __init__(self,lista:List(TaggedText)=[],entidades_map:dict=None):
         self._lista = lista
         self._entidades = entidades_map
+    
+    def append(self,row:TaggedText):
+        self._lista.append(row)
 
     # propiedades básicas
     def __len__(self):
@@ -46,27 +50,42 @@ class Corpus:
         return self._entidades
 
     @entidades.setter
-    def entitdades(self, entidades_map:dict):
+    def entidades(self, entidades_map:dict):
         """Propiedad entidades: diccionario de la forma
-            { indice (int) : entidad (str) }
+            { entidad (str) : indice (int) }
+            en caso que se quiera colocar manualmente
         """
         self._entidades = entidades_map
     
+    def deducir_entidades(self):
+        ent_dict = {
+            'O' : 0
+        }
+        ent = list(set(list(itertools.chain.from_iterable(self.ner_tags))))
+        idx = 1
+        for tag in ent:
+            if not tag=='O':
+                ent_dict[tag] = idx
+                idx += 1
+        self._entidades = ent_dict
+    
     def __iter__(self):
-        for column in self._lista:
-            yield column
+        for row in self._lista:
+            yield row
     
     @property
     def tokens(self) -> List[str]:
-        return [column.tokens for column in self._lista]
+        return [row.tokens for row in self._lista]
     
     @property
-    def ner_tags(self) -> List[int]:
+    def ner_tags(self) -> List[str]:
         return [column.tags for column in self._lista]
 
 
     def to_HG_dataset(self) -> Dataset:
         """Returns a HuggingFace datasets.Dataset object"""
+        if self._entidades is None:
+            self.deducir_entidades()
         dataset_dict = {
             'id': list(range(len(self))),
            'tokens': self.tokens,
