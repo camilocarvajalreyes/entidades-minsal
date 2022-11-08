@@ -34,7 +34,7 @@ class TaggedText:
 
 class Corpus:
     """Clase corpus de base"""
-    def __init__(self,lista:List(TaggedText)=[],entidades_map:dict=None):
+    def __init__(self,lista=[],entidades_map:dict=None):
         self._lista = lista
         self._entidades = entidades_map
     
