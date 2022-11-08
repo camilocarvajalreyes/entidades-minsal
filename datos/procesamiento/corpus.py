@@ -1,6 +1,7 @@
 from typing import List
 from datasets import Dataset
 import itertools
+import numpy as np
 
 
 class TaggedText:
@@ -27,7 +28,7 @@ class TaggedText:
         return len(self.tokens)
 
     def __iter__(self):
-        for i, tok in self.tokens:
+        for i, tok in enumerate(self.tokens):
             yield (tok,self.tags[i])
 
 
@@ -92,3 +93,14 @@ class Corpus:
            'ner_tags': self.ner_tags
         }
         return Dataset.from_dict(dataset_dict)
+
+    def to_numpy(self) -> np.array:
+        """Returns a numpy array"""
+        # output = np.empty([len(self)*algo,2], dtype= object)
+        output = []
+        for row in self:
+            for tup in row:
+                output.append(np.array([tup[0],tup[1]], dtype = object))
+            output.append(np.array(['', ''], dtype = object))
+        
+        return output

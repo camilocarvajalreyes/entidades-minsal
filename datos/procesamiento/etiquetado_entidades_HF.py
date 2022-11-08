@@ -105,4 +105,19 @@ def process_column(row:pd.Series,PA:pd.Series,FF:pd.Series) -> TaggedText:
             idx += 1
             j += 1
     
+    for i, token in enumerate(output_tokens):
+        try:
+            if token in ['+','CON','SOLUCIÓN']:
+                output_tags[i+1] = output_tags[i]
+            if output_tags[i] == 'ADMIN' and output_tags[i-1] == 'B-ADMIN':
+                output_tags[i] = 'I-ADMIN'
+            elif output_tags[i] == 'ADMIN':
+                output_tags[i] = 'B-ADMIN'
+            elif output_tags[i] == 'ACTVPRNCP' and output_tags[i-1] == 'B-ACTVPRNCP':
+                output_tags[i] = 'I-ACTVPRNCP'
+            elif output_tags[i] == 'ACTVPRNCP':
+                output_tags[i] = 'B-ACTVPRNCP'
+        except IndexError:
+            pass
+    
     return TaggedText(output_tokens,output_tags)
