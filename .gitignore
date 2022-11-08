@@ -7,3 +7,4 @@ reuniones/
 .ipynb_checkpoints/
 Notebooks_Exploracion/modelos/
 otros/
+*.pyc
