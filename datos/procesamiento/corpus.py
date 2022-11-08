@@ -77,20 +77,23 @@ class Corpus:
     @property
     def tokens(self) -> List[str]:
         return [row.tokens for row in self._lista]
-    
+
     @property
     def ner_tags(self) -> List[str]:
-        return [column.tags for column in self._lista]
-
-
-    def to_HG_dataset(self) -> Dataset:
-        """Returns a HuggingFace datasets.Dataset object"""
+        return [row.tags for row in self._lista]
+    
+    @property
+    def ner_tag_ids(self) -> List[int]:
         if self._entidades is None:
             self.deducir_entidades()
+        return [[self._entidades[tup[1]] for tup in row] for row in self._lista]
+
+    def to_HF_dataset(self) -> Dataset:
+        """Returns a HuggingFace datasets.Dataset object"""
         dataset_dict = {
             'id': list(range(len(self))),
            'tokens': self.tokens,
-           'ner_tags': self.ner_tags
+           'ner_tags': self.ner_tag_ids
         }
         return Dataset.from_dict(dataset_dict)
 
