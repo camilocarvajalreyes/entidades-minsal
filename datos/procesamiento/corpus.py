@@ -1,4 +1,5 @@
 from typing import List
+from datasets import Dataset
 
 
 class TaggedText:
@@ -50,3 +51,25 @@ class Corpus:
             { indice (int) : entidad (str) }
         """
         self._entidades = entidades_map
+    
+    def __iter__(self):
+        for column in self._lista:
+            yield column
+    
+    @property
+    def tokens(self) -> List[str]:
+        return [column.tokens for column in self._lista]
+    
+    @property
+    def ner_tags(self) -> List[int]:
+        return [column.tags for column in self._lista]
+
+
+    def to_HG_dataset(self) -> Dataset:
+        """Returns a HuggingFace datasets.Dataset object"""
+        dataset_dict = {
+            'id': list(range(len(self))),
+           'tokens': self.tokens,
+           'ner_tags': self.ner_tags
+        }
+        return Dataset.from_dict(dataset_dict)
