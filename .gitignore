@@ -9,3 +9,4 @@ Notebooks_Exploracion/modelos/
 otros/
 *.pyc
 *pytorch_model.bin
+checkpoint-*
