@@ -16,7 +16,7 @@ class TaggedText:
                 lista de strings
                 
             tags: list
-                lista de ints
+                lista de strings (nombres de entitdades)
         """
         if not len(tokens)==len(tags):
             raise ValueError("tokens y tags deben tener el mismo largo")
@@ -107,3 +107,24 @@ class Corpus:
             output.append(np.array(['', ''], dtype = object))
         
         return output
+    
+    def load_conll(self,path,verbose=True):
+            """
+            Lee un archivo en formato conll (limpiado sin -x-, por ahora) y agrega cada secuencia etiquetada al corpus
+            """
+            with open(path) as f:
+                lines = f.readlines()
+                tokens, entities, counter = [], [], 1
+                for line in lines:
+                    line = line.split()
+                    if line:
+                        token, entity = tuple(line)
+                        tokens.append(token)
+                        entities.append(entity)
+                    else:
+                        counter += 1
+                        self.append(TaggedText(tokens,entities))
+                        tokens, entities = [], []
+                self.append(TaggedText(tokens,entities))
+            if verbose:
+                print("Agregadas {} secuencias de token-entidad al corpus".format(counter))

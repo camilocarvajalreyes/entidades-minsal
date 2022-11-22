@@ -10,3 +10,4 @@ otros/
 *.pyc
 *pytorch_model.bin
 checkpoint-*
+*draft.ipynb
