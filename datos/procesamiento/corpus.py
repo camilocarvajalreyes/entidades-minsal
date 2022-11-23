@@ -118,7 +118,15 @@ class Corpus:
                 for line in lines:
                     line = line.split()
                     if line:
-                        token, entity = tuple(line)
+                        try:
+                            token, entity = tuple(line)
+                        except ValueError as e:
+                            if str(e) != "too many values to unpack (expected 2)":
+                                raise TabError('hakunamatata')
+                            else:
+                                # line.remove('-X-')
+                                token = line[0]
+                                entity = line[-1]
                         tokens.append(token)
                         entities.append(entity)
                     else:
