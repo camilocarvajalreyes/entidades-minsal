@@ -122,7 +122,12 @@ class Corpus:
                             token, entity = tuple(line)
                         except ValueError as e:
                             if str(e) != "too many values to unpack (expected 2)":
-                                raise TabError('hakunamatata')
+                                # print(line)
+                                if str(e) != "not enough values to unpack (expected 2, got 1)":
+                                    raise ValueError(e)
+                                else:
+                                    token = ''
+                                    entity = line[-1]
                             else:
                                 # line.remove('-X-')
                                 token = line[0]
