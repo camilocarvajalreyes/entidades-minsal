@@ -3,6 +3,7 @@ import sys
 sys.path.append('../modelos')
 from transformers import AutoModelForTokenClassification, AutoTokenizer
 from auxfunctions import eval_text, map_entities
+from spacy import displacy
 
 MODEL = "bert-clinical-scratch-wl-es-NER-prescription-mini"
 
@@ -21,3 +22,10 @@ ner_dict = {'O': 0,
             'B-DURATION': 9,
             'I-DURATION': 10
             }
+
+def etiquetar(texto):
+    entidades = map_entities(eval_text(texto,tokenizer,model),ner_dict)
+    string_ent = '\t'.join(entidades)
+    string_pre = '\t'.join(texto.split())
+    print(string_ent)
+    print(string_pre)
