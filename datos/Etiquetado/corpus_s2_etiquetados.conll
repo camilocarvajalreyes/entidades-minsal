@@ -3485,8 +3485,8 @@ ML -X- _ I-FORMA_FARMA
 Suministro -X- _ O
 inmediato -X- _ O
 primera -X- _ O
-vez. -X- _ B-ADMIN
-6 -X- _ I-ADMIN
+vez. -X- _ O
+6 -X- _ B-ADMIN
 MG -X- _ I-ADMIN
 INTRAVENOSA -X- _ I-ADMIN
 cada -X- _ B-PERIODICITY
