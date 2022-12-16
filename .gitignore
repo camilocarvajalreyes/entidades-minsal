@@ -5,7 +5,7 @@ datos/diccionario_data_hlf.xlsx
 datos/PRINCIPIOS_ACTIVOS_MDS.xlsx
 reuniones/
 .ipynb_checkpoints/
-Notebooks_Exploracion/modelos/
+exploracion/modelos/
 otros/
 *.pyc
 *pytorch_model.bin
