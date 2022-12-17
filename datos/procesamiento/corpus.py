@@ -35,7 +35,7 @@ class TaggedText:
 class Corpus:
     """Clase corpus de base"""
     def __init__(self,lista=[],entidades_map:dict=None):
-        self._lista = lista
+        self._lista = lista.copy()
         self._entidades = entidades_map
     
     def append(self,row:TaggedText):
@@ -119,18 +119,13 @@ class Corpus:
                     line = line.split()
                     if line:
                         try:
-                            token, entity = tuple(line)
+                            token = line[0]
+                            entity = line[-1]
                         except ValueError as e:
-                            if str(e) != "too many values to unpack (expected 2)":
-                                # print(line)
-                                if str(e) != "not enough values to unpack (expected 2, got 1)":
-                                    raise ValueError(e)
-                                else:
-                                    token = ''
-                                    entity = line[-1]
+                            if str(e) != "not enough values to unpack (expected 2, got 1)":
+                                raise ValueError(e)
                             else:
-                                # line.remove('-X-')
-                                token = line[0]
+                                token = ''
                                 entity = line[-1]
                         tokens.append(token)
                         entities.append(entity)
