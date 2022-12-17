@@ -1,5 +1,5 @@
 {
-  "_name_or_path": "plncmm/bert-clinical-scratch-wl-es",
+  "_name_or_path": "bert-clinical-scratch-wl-es-NER-prescription",
   "architectures": [
     "BertForTokenClassification"
   ],
