@@ -4,7 +4,7 @@
   "do_lower_case": true,
   "mask_token": "[MASK]",
   "model_max_length": 512,
-  "name_or_path": "plncmm/bert-clinical-scratch-wl-es",
+  "name_or_path": "bert-clinical-scratch-wl-es-NER-prescription",
   "never_split": null,
   "pad_token": "[PAD]",
   "sep_token": "[SEP]",
