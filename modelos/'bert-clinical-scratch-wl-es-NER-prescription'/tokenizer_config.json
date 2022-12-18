@@ -1,0 +1,16 @@
+{
+  "cls_token": "[CLS]",
+  "do_basic_tokenize": true,
+  "do_lower_case": true,
+  "mask_token": "[MASK]",
+  "model_max_length": 512,
+  "name_or_path": "ccarvajal/beto-emoji",
+  "never_split": null,
+  "pad_token": "[PAD]",
+  "sep_token": "[SEP]",
+  "special_tokens_map_file": "/home/camilo/.cache/huggingface/transformers/78141ed1e8dcc5ff370950397ca0d1c5c9da478f54ec14544187d8a93eff1a26.f982506b52498d4adb4bd491f593dc92b2ef6be61bfdbe9d30f53f963f9f5b66",
+  "strip_accents": false,
+  "tokenize_chinese_chars": true,
+  "tokenizer_class": "BertTokenizer",
+  "unk_token": "[UNK]"
+}
