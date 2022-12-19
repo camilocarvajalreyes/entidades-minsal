@@ -53,8 +53,8 @@ def cargar_modelo(admin=False,verbose=False):
             print("Descargando modelo de repositorio HuggingFace")
         tokenizer = AutoTokenizer.from_pretrained(MODEL)
         tokenizer.save_pretrained(folder)
-        model_mini = AutoModelForTokenClassification.from_pretrained(MODEL, num_labels=n_labels,ignore_mismatched_sizes=True)
-        model_mini.save_pretrained(folder)
+        model = AutoModelForTokenClassification.from_pretrained(MODEL, num_labels=n_labels,ignore_mismatched_sizes=True)
+        model.save_pretrained(folder)
     
     return tokenizer, model
 
