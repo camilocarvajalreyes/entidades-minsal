@@ -12,18 +12,31 @@ Repositorio para proyecto de reconocimiento de entidades en texto de recetas mé
 - Constanza Contreras (Docente MDS7201)
 - Francisco Förster (Docente MDS7201)
 
-### Demo
-Ponemos a disposición dos demostraciones de funcionamiento de nuestro trabajo (se restringe a los modelos BETO, pero un funcionamiento con RNN sería análogo).
+### Informe
+El informe completo de nuestro de trabajo se encuentra [en este archivo](Informe_final.pdf).
+
+## Demo
+Ponemos a disposición una demostración online del funcionamiento de nuestro trabajo (se restringe a los modelos BETO, pero un funcionamiento con RNN sería análogo):
+
+https://huggingface.co/spaces/ccarvajal/entidades-prescripciones
+
+El texto puede ser cambiado por el usuario y se entrega como input a nuestros modelos. Luego el texto se ordena según las entidades detectadas.
+
+
+### Notebooks de ejemplo
+Análogamente a la demo en línea, se proveen dos notebooks de ejemplo para replicar nuestro modelo en código.
 
 1. [Demo general](demo_minsal/demo.ipynb)
 
-    Este demo está listo para funcionar desde cero en cualquier máquina que tenga instalada python y jupyter notebooks. Instala las dependencias relevantes, descarga los modelos. Ejecuta las predicciones y las traduce a lenguaje entendible. El notebook puede ser usado de manera independiente de este repositorio.
+    Esta demo está listo para funcionar desde cero en cualquier máquina que tenga instalada python y jupyter notebooks. Instala las dependencias relevantes, descarga los modelos. Ejecuta las predicciones y las traduce a lenguaje entendible. El notebook puede ser usado de manera independiente de este repositorio.
 
 2. [Demo minimalista](demo_minsal/demo_minimalista.ipynb)
 
-    Este demo carga y usa los modelos para un texto de manera directa, sin que el usuario vea el código detrás. Es una manera de mostrar como funcionaría el modelo en producción y depende de el los scripts [predicciones](demo_minsal/predicciones.py) y [auxfunctions](modelos/auxfunctions.py). Este demo requiere un ambiente python donde se hayan instalado las dependencias usando
+    Esta demo carga y usa los modelos para un texto de manera directa, sin que el usuario vea el código detrás. Su output es el mismo que la demo online. Es una manera de mostrar como funcionaría el modelo en producción y depende de el los scripts [predicciones](demo_minsal/predicciones.py) y [auxfunctions](modelos/auxfunctions.py). Este demo requiere un ambiente python donde se hayan instalado las dependencias usando
 
     ```pip install -r requirements.txt```
+
+    O bien corriendo la [demo general](demo_minsal/demo.ipynb) primero para la parte de instalación.
 
 
 ## Contenidos
